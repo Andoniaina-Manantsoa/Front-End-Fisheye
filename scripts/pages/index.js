@@ -5,6 +5,7 @@ async function getPhotographers() {
     return (photographersData.photographers)
 }
 
+// Générer le DOM avec les donées
 function photographerTemplate(photographer) {
     const { name, portrait, city, country, tagline, price } = photographer;
     const picture = `assets/photographers/id-photos/${portrait}`;
@@ -42,6 +43,7 @@ function photographerTemplate(photographer) {
     return { getUserCardDOM };
 }
 
+//Boucle sur chaque photographe
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
     photographers.forEach((photographer) => {
