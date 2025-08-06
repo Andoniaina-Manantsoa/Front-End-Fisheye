@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 import { photographerTemplate } from '../templates/photographer.js';
-import { mediaFactory } from "./media.js";
+import { mediaFactory } from './media.js';
 
 async function getData() {
     const response = await fetch('../data/photographers.json');
@@ -16,6 +16,7 @@ function getPhotographerIdFromUrl() {
 async function displayPhotographerInfo() {
     const data = await getData();
     //console.log(data.media);
+
     const photographerId = getPhotographerIdFromUrl();
 
     const photographer = data.photographers.find(p => p.id === photographerId);
@@ -35,7 +36,8 @@ async function displayPhotographerInfo() {
 
     //parcourir les médias
     photographerMedias.forEach(media => {
-        const mediaElement = document.createElement("div");
+        console.log("parcourir les médias");
+        /*const mediaElement = document.createElement("div");
         mediasContainer.appendChild(mediaElement);
 
         // image
@@ -60,7 +62,10 @@ async function displayPhotographerInfo() {
             mediaElement.appendChild(video);
         }
 
-        mediasContainer.appendChild(mediaElement);
+        mediasContainer.appendChild(mediaElement);*/
+
+        mediasContainer.appendChild(mediaFactory(media).getMediaCardDOM());
+
     });
 }
 

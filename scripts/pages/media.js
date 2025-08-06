@@ -1,12 +1,16 @@
 function mediaFactory(media) {
-    const { title, image, video, likes } = media;
-    const file = image ? `assets/photographers/media/${image}` : `assets/photographers/media/${video}`;
+    console.log(media);
+    const { title, image, video, likes, photographerId } = media;
+    const file = image ? `assets/photographers/media/${photographerId}/${image}` : `assets/photographers/media/${photographerId}/${video}`;
+    console.log(file);
 
     function getMediaCardDOM() {
         const article = document.createElement("article");
+        console.log("miditra getMEdiaCardDOM");
 
         // Créer le média (img ou video)
         let mediaElement;
+
         if (image) {
             mediaElement = document.createElement("img");
             mediaElement.setAttribute("src", file);

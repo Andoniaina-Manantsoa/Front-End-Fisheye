@@ -1,5 +1,5 @@
 function photographerTemplate(photographer) {
-    const { id, name, portrait, city, country, tagline, price } = photographer;
+    const { name, portrait, city, country, tagline, price } = photographer;
     const picture = `assets/photographers/id-photos/${portrait}`;
 
     function getUserCardDOM() {
