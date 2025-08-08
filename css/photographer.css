@@ -4,8 +4,9 @@
 
 .photograph-header {
     background-color: #FAFAFA;
+    width: 1440px;
     height: 300px;
-    margin: 0 100px;
+    margin: 0 130px;
 }
 
 .photographer-img img {
@@ -51,6 +52,23 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.photographer-media-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 100px;
+    margin: 130px;
+}
+
+.photographer-media-section img {
+    width: 350px;
+    height: 300px;
+}
+
+.photographer-media-section video {
+    width: 350px;
+    height: 300px;
 }
 
 .modal {
