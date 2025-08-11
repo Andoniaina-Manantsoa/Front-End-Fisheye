@@ -6,8 +6,10 @@
   <link href="css/photographer.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <title>Fisheye - photographe </title>
+  <script type="module" src="/scripts/utils/contactForm.js"></script>
 </head>
 
 <body>
@@ -23,25 +25,40 @@
     <section id="medias-container" class="photographer-media-section"></section>
   </main>
 
+  <!--Modal contact-->
   <div id="contact_modal">
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" alt="contactez-moi">
+        <img src="assets/icons/close.svg" id="close_contact" alt="contactez-moi">
       </header>
-      <form>
+
+      <form class="contact">
         <div>
-          <label>Trier par</label>
-          <input />
+          <label for="first">Prénom</label>
+          <input type="text" id="first" name="first" />
         </div>
-        <button type="button" class="contact_button" aria-label="Envoyer">Envoyer</button>
+
+        <div>
+          <label for="last">Nom</label>
+          <input type="text" id="last" name="last" />
+        </div>
+
+        <div>
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" />
+        </div>
+
+        <div>
+          <label for="message">Votre message</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
+
+        <button type="button" class="send_contact" aria-label="Envoyer">Envoyer</button>
       </form>
     </div>
   </div>
   <script type="module" src="/scripts/pages/photographer.js"></script>
-  <!--<script type="module" src="/scripts/templates/photographer.js"></script>
-  <script type="module" src="/scripts/pages/media.js"></script>-->
-  <script src="/scripts/utils/contactForm.js"></script>
 </body>
 
 </html>

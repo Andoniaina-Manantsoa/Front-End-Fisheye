@@ -1,12 +1,18 @@
 #contact_modal {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .photograph-header {
     background-color: #FAFAFA;
-    width: 1440px;
+    width: 1240px;
     height: 300px;
-    margin: 0 130px;
+    margin-bottom: 70px;
 }
 
 .photographer-img img {
@@ -30,10 +36,12 @@
 .photographer-infos h1 {
     color: #D3573C;
     font-size: 60px;
+    margin-bottom: 20px;
 }
 
 .photographer-location {
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .photographer-tagline {
@@ -41,7 +49,8 @@
     margin-left: 0;
 }
 
-.contact_button {
+.contact_button,
+.send_contact {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -57,24 +66,37 @@
 .photographer-media-section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 100px;
-    margin: 130px;
+    gap: 50px;
 }
 
-.photographer-media-section img {
+.photographer-media-section img,
+video {
     width: 350px;
     height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-.photographer-media-section video {
-    width: 350px;
-    height: 300px;
+.media-info {
+    color: #901C1C;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 40px;
+}
+
+.media-likes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 669px;
+    height: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -123,4 +145,18 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+#price-card {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #DB8876;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px 20px;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    z-index: 999;
 }

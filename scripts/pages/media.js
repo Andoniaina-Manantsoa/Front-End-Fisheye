@@ -1,12 +1,11 @@
+import { updateLikeCard } from './photographer.js';
+
 function mediaFactory(media) {
-    console.log(media);
     const { title, image, video, likes, photographerId } = media;
     const file = image ? `assets/photographers/media/${photographerId}/${image}` : `assets/photographers/media/${photographerId}/${video}`;
-    console.log(file);
 
     function getMediaCardDOM() {
         const article = document.createElement("article");
-        console.log("miditra getMEdiaCardDOM");
 
         // Créer le média (img ou video)
         let mediaElement;
@@ -21,16 +20,36 @@ function mediaFactory(media) {
             mediaElement.setAttribute("controls", true);
         }
 
+        const infoContainer = document.createElement("div");
+        infoContainer.classList.add("media-info");
+
         const titleEl = document.createElement("h3");
         titleEl.textContent = title;
 
         const likesEl = document.createElement("span");
-        likesEl.textContent = `${likes} ♥`;
         likesEl.classList.add("media-likes");
 
+        const numberEl = document.createElement("span");
+        numberEl.textContent = likes;
+
+        const heartEl = document.createElement("i");
+        heartEl.classList.add("fa", "fa-heart");
+
+        // Clic sur cœur
+        heartEl.addEventListener("click", () => {
+            media.likes++;  // Incrémente le like du média
+            numberEl.textContent = media.likes; // Mets à jour l'affichage local
+            updateLikeCard();
+        });
+
+        likesEl.appendChild(numberEl);
+        likesEl.appendChild(heartEl);
+
+        infoContainer.appendChild(titleEl);
+        infoContainer.appendChild(likesEl);
+
         article.appendChild(mediaElement);
-        article.appendChild(titleEl);
-        article.appendChild(likesEl);
+        article.appendChild(infoContainer);
 
         return article;
     }

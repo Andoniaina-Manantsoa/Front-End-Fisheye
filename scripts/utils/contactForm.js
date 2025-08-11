@@ -1,9 +1,24 @@
-console.log("contactForm");
-const contactButton = document.querySelector(".contact_button");
-console.log(contactButton);
-contactButton.addEventListener("click", () => alert("contacter"));
+document.addEventListener("DOMContentLoaded", () => {
+    const openContact = document.querySelector(".contact_button");
+    const closeContact = document.getElementById("close_contact");
+    const modal = document.getElementById("contact_modal");
+    const sendContact = document.querySelector(".send_contact");
+
+    openContact.addEventListener("click", () => {
+        modal.style.display = "flex";
+    });
+
+    closeContact.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    sendContact.addEventListener("click", () => {
+        alert("Formulaire envoyé");
+    });
+});
+
+// Afficher la modale
 function displayModal() {
-    console.log("contactez-nous");
     const modal = document.getElementById("contact_modal");
     modal.style.display = "block";
 }
