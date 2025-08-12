@@ -4,6 +4,8 @@ function mediaFactory(media) {
     const { title, image, video, likes, photographerId } = media;
     const file = image ? `assets/photographers/media/${photographerId}/${image}` : `assets/photographers/media/${photographerId}/${video}`;
 
+    let hasLiked = false;//Savoir si déjà liké
+
     function getMediaCardDOM() {
         const article = document.createElement("article");
 
@@ -37,9 +39,12 @@ function mediaFactory(media) {
 
         // Clic sur cœur
         heartEl.addEventListener("click", () => {
-            media.likes++;  // Incrémente le like du média
-            numberEl.textContent = media.likes; // Mets à jour l'affichage local
-            updateLikeCard();
+            if (!hasLiked) {
+                media.likes++;  // Incrémente le like du média
+                numberEl.textContent = media.likes; // Mets à jour l'affichage local
+                hasLiked = true;// Empêcher de liker à nouveau
+                updateLikeCard();
+            }
         });
 
         likesEl.appendChild(numberEl);

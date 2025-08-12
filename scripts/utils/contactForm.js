@@ -4,18 +4,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("contact_modal");
     const sendContact = document.querySelector(".send_contact");
 
-    openContact.addEventListener("click", () => {
-        modal.style.display = "flex";
-    });
+    if (openContact) {
+        openContact.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+    }
 
-    closeContact.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
+    if (closeContact) {
+        closeContact.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+    }
 
-    sendContact.addEventListener("click", () => {
-        alert("Formulaire envoyé");
-    });
+    if (sendContact) {
+        sendContact.addEventListener("click", () => {
+            alert("Formulaire envoyé");
+        });
+    }
 });
+
+/*document.body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("contact_button")) {
+        const modal = document.getElementById("contact_modal");
+        modal.style.display = "flex";
+    }
+
+    if (e.target.id === "close_contact") {
+        const modal = document.getElementById("contact_modal");
+        modal.style.display = "none";
+    }
+});*/
 
 // Afficher la modale
 function displayModal() {
