@@ -1,47 +1,37 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const openContact = document.querySelector(".contact_button");
-    const closeContact = document.getElementById("close_contact");
-    const modal = document.getElementById("contact_modal");
-    const sendContact = document.querySelector(".send_contact");
-
-    if (openContact) {
-        openContact.addEventListener("click", () => {
-            modal.style.display = "flex";
-        });
-    }
-
-    if (closeContact) {
-        closeContact.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
-    }
-
-    if (sendContact) {
-        sendContact.addEventListener("click", () => {
-            alert("Formulaire envoyé");
-        });
-    }
-});
-
-/*document.body.addEventListener("click", (e) => {
-    if (e.target.classList.contains("contact_button")) {
-        const modal = document.getElementById("contact_modal");
-        modal.style.display = "flex";
-    }
-
-    if (e.target.id === "close_contact") {
-        const modal = document.getElementById("contact_modal");
-        modal.style.display = "none";
-    }
-});*/
-
 // Afficher la modale
 function displayModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "block";
 }
 
+// Fermer la modale
 function closeModal() {
     const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+    if (modal) {
+        modal.style.display = "none";
+
+        // Réinitialiser le formulaire
+        const form = modal.querySelector('form');
+        if (form) form.reset();
+    }
 }
+
+// Attacher les événements seulement si les éléments existent
+const closeBtn = document.querySelector('#close_contact');
+if (closeBtn) {
+    closeBtn.addEventListener("click", closeModal);
+}
+
+const sendBtn = document.querySelector('.send_contact');
+if (sendBtn) {
+    sendBtn.addEventListener('click', function () {
+        alert("Message envoyé ✅");
+
+        const form = document.querySelector('.contact');
+        if (form) form.reset();
+
+        closeModal();
+    });
+}
+
+export { displayModal };

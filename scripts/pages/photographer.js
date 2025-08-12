@@ -76,7 +76,6 @@ async function displayPhotographerInfo() {
     photographerMedias.forEach(media => {
         mediasData.push(media);
         mediasContainer.appendChild(mediaFactory(media).getMediaCardDOM());
-
     });
 
     // Créer et afficher l’encart tarif + likes

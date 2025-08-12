@@ -1,3 +1,5 @@
+import { displayModal } from "../utils/contactForm.js";
+
 function photographerTemplate(photographer) {
     const { name, portrait, city, country, tagline, price } = photographer;
     const picture = `assets/photographers/id-photos/${portrait}`;
@@ -67,6 +69,7 @@ function photographerTemplate(photographer) {
         const contactButton = document.createElement('button');
         contactButton.textContent = "Contactez-moi";
         contactButton.classList.add('contact_button');
+        contactButton.addEventListener('click', displayModal);
 
         // Div pour l'image
         const imageContainer = document.createElement('div');

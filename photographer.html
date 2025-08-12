@@ -11,11 +11,11 @@
   <title>Fisheye - photographe </title>
 </head>
 
-<body>
+<body id="body">
   <header>
     <img src="assets/images/logo.png" class="logo" alt="logo">
   </header>
-  <main id="main">
+  <main id="main-wrapper" aria-hidden="false">
     <div class="photograph-header">
       <div id="photographer-info"></div>
     </div>
@@ -26,9 +26,9 @@
 
   <!--Modal contact-->
   <div id="contact_modal">
-    <div class="modal">
+    <div class="modal" aria-hidden="true" role="dialog" aria-describedby="modalTitle">
       <header>
-        <h2>Contactez-moi</h2>
+        <h2 class="modal-title">Contactez-moi</h2>
         <img src="assets/icons/close.svg" id="close_contact" alt="contactez-moi">
       </header>
 
