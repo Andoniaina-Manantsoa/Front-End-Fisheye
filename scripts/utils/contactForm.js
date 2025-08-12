@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* document.addEventListener("DOMContentLoaded", () => {
     const openContact = document.querySelector(".contact_button");
     const closeContact = document.getElementById("close_contact");
     const modal = document.getElementById("contact_modal");
@@ -16,13 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Formulaire envoyé");
     });
 });
-
+ */
 // Afficher la modale
 function displayModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "block";
 }
 
+document.querySelector("#close_contact").addEventListener("click", closeModal);
+
+// Fermer la modale
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
