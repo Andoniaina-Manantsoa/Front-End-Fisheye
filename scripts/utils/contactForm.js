@@ -25,7 +25,7 @@ if (closeBtn) {
 const sendBtn = document.querySelector('.send_contact');
 if (sendBtn) {
     sendBtn.addEventListener('click', function () {
-        alert("Message envoyé ✅");
+        alert("Message envoyé");
 
         const form = document.querySelector('.contact');
         if (form) form.reset();
@@ -33,5 +33,58 @@ if (sendBtn) {
         closeModal();
     });
 }
+/*// Récupération et vérifier les champs à valider
+document.getElementById("first").addEventListener("input", () => validateInput("first"));
+document.getElementById("last").addEventListener("input", () => validateInput("last"));
+document.getElementById("email").addEventListener("input", validateEmail);
+document.getElementById("message").addEventListener("textarea", validateMessage);
+
+// Vérifier prénom et nom
+function validateInput(id) {
+    const input = document.getElementById(id);
+    const isValid = input.value.trim().length >= 2;
+    return isValid;
+}
+
+// Vérifier email
+function validateEmail() {
+    const email = document.getElementById("email");
+    const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const isValid = emailPattern.test(email.value.trim());
+    return isValid;
+}
+
+// Vérifier message
+function validateMessage() {
+    const message = document.getElementById("message");
+    const isValid = message.value.trim().length >= 2;
+    return isValid;
+}
+
+// Attacher l'événement sur le bouton envoyer
+const sendBtn = document.querySelector('.send_contact');
+if (sendBtn) {
+    sendBtn.addEventListener('click', function (e) {
+        e.preventDefault(); // Bloque l'envoi par défaut
+
+        // Vérification des champs
+        const isFirstValid = validateInput("first");
+        const isLastValid = validateInput("last");
+        const isEmailValid = validateEmail();
+        const isMessageValid = validateMessage();
+
+        // Si tous les champs sont valides
+        if (isFirstValid && isLastValid && isEmailValid && isMessageValid) {
+            alert("Message envoyé !");
+
+            // Réinitialiser le formulaire
+            const form = document.querySelector('.contact');
+            if (form) form.reset();
+
+            // Fermer la modale
+            closeModal();
+        }
+    });
+}*/
 
 export { displayModal };

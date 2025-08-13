@@ -15,10 +15,25 @@
   <header>
     <img src="assets/images/logo.png" class="logo" alt="logo">
   </header>
+
   <main id="main-wrapper" aria-hidden="false">
     <div class="photograph-header">
       <div id="photographer-info"></div>
     </div>
+
+    <!-- Menu de trie -->
+    <section class="filtres">
+      <h3>Trier par</h3>
+      <button class="icon" id="menu-button" aria-haspopup="true" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="trie-button" role="menu">
+        <button class="btn-trier">Popularité</button>
+        <button class="btn-trier">Date</button>
+        <button class="btn-trier">Titre</button>
+      </div>
+    </section>
 
     <!-- Conteneur pour les médias du photographe -->
     <section id="medias-container" class="photographer-media-section"></section>
