@@ -1,4 +1,4 @@
-import { updateLikeCard } from './photographer.js';
+import { updateLikeCard } from '../pages/photographer.js';
 
 //Afficher les tries lors du clique sur l'icon fa-bars
 document.addEventListener("DOMContentLoaded", () => {

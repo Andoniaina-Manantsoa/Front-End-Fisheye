@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 import { photographerTemplate } from '../templates/photographer.js';
-import { mediaFactory } from './media.js';
+import { mediaFactory } from '../templates/media.js';
 
 //Récuperer les donner avec fetch
 async function getData() {
