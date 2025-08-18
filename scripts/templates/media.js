@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function mediaFactory(media) {
+function mediaFactory(media, { index, onOpen } = {}) {
     const { title, image, video, likes, photographerId } = media;
     const file = image ? `assets/photographers/media/${photographerId}/${image}` : `assets/photographers/media/${photographerId}/${video}`;
 
@@ -81,6 +81,11 @@ function mediaFactory(media) {
             mediaElement.setAttribute("src", file);
             mediaElement.setAttribute("controls", true);
         }
+
+        // Clic sur image ou vidéo → ouvre Lightbox
+        mediaElement.addEventListener("click", () => {
+            if (typeof onOpen === "function") onOpen(index);
+        });
 
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("media-info");
