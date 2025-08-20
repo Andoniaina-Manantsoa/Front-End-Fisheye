@@ -105,9 +105,9 @@ function mediaFactory(media, { index, onOpen } = {}) {
         });
 
         // Clic sur image ou vidéo → ouvre Lightbox
-        mediaElement.addEventListener("click", () => {
+        /*mediaElement.addEventListener("click", () => {
             if (typeof onOpen === "function") onOpen(index);
-        });
+        });*/
 
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("media-info");
