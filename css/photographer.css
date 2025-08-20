@@ -68,6 +68,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 50px;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .photographer-media-section img,
@@ -92,6 +93,13 @@ video {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.like-button {
+    color: #901C1C;
+    font-size: 18px;
+    background: none;
+    border: none;
 }
 
 .modal {

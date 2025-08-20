@@ -64,6 +64,7 @@ function mediaFactory(media, { index, onOpen } = {}) {
 
     function getMediaCardDOM() {
         const article = document.createElement("article");
+        article.classList.add("media-card");
 
         // Ajouter les data-attributes pour le tri
         article.dataset.likes = media.likes;
@@ -76,11 +77,32 @@ function mediaFactory(media, { index, onOpen } = {}) {
             mediaElement = document.createElement("img");
             mediaElement.setAttribute("src", file);
             mediaElement.setAttribute("alt", title);
+            mediaElement.setAttribute("aria-label", `${title}, ouvrir en plein écran`);
+            mediaElement.setAttribute("tabindex", "0"); // focus clavier
         } else if (video) {
             mediaElement = document.createElement("video");
             mediaElement.setAttribute("src", file);
-            mediaElement.setAttribute("controls", true);
+            mediaElement.setAttribute("aria-label", `${title}, vidéo, ouvrir en plein écran`);
+            mediaElement.setAttribute("tabindex", "0"); // focus clavier
+            mediaElement.setAttribute("preload", "metadata");
+            /*mediaElement.setAttribute("controls", true);*/
         }
+
+        // Fonction d'ouverture de la lightbox
+        const open = () => {
+            if (typeof onOpen === "function") onOpen(index);
+        };
+
+        // Clic souris → ouvre lightbox
+        mediaElement.addEventListener("click", open);
+
+        // Activation clavier (Enter ou Espace) → ouvre lightbox
+        mediaElement.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                open();
+            }
+        });
 
         // Clic sur image ou vidéo → ouvre Lightbox
         mediaElement.addEventListener("click", () => {
@@ -98,15 +120,19 @@ function mediaFactory(media, { index, onOpen } = {}) {
 
         const numberEl = document.createElement("span");
         numberEl.textContent = likes;
+        numberEl.setAttribute("aria-label", `${likes} mentions j’aime`);
 
-        const heartEl = document.createElement("i");
-        heartEl.classList.add("fa", "fa-heart");
+        const heartEl = document.createElement("button");
+        heartEl.classList.add("like-button");
+        heartEl.setAttribute("aria-label", `Aimer ${title}`);
+        heartEl.innerHTML = `<i class="fa fa-heart" aria-hidden="true"></i>`;
 
         // Clic sur cœur
         heartEl.addEventListener("click", () => {
             if (!hasLiked) {
                 media.likes++;  // Incrémente le like du média
                 numberEl.textContent = media.likes; // Mets à jour l'affichage local
+                numberEl.setAttribute("aria-label", `${media.likes} mentions j’aime`);
                 article.dataset.likes = media.likes;
                 hasLiked = true;// Empêcher de liker à nouveau
                 updateLikeCard();

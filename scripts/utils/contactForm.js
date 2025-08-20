@@ -30,6 +30,9 @@ function closeModal() {
     modal.setAttribute("aria-hidden", "true");
     document.querySelector("main").removeAttribute("inert");
 
+    // 👉 Redonner le focus à un élément extérieur (ex: bouton "Contactez-moi")
+    const triggerBtn = document.querySelector(".contact_button");
+    if (triggerBtn) triggerBtn.focus();
 }
 
 // Attacher les événements seulement si les éléments existent
@@ -48,8 +51,13 @@ if (sendBtn) {
         const isMessageValid = validateMessage();
 
         if (isFirstValid && isLastValid && isEmailValid && isMessageValid) {
-            alert("Message envoyé !");
             closeModal();
+            const modal = document.getElementById("contact_modal");
+            const confirmation = document.createElement("p");
+            confirmation.textContent = "Message envoyé !";
+            confirmation.classList.add("success-message");
+            modal.querySelector("form").appendChild(confirmation);
+
         } else {
             alert("Veuillez corriger les champs en rouge avant d'envoyer.");
         }
@@ -57,10 +65,19 @@ if (sendBtn) {
 }
 
 // Ajout des écouteurs une seule fois
-document.getElementById("first").addEventListener("input", () => validateInput("first"));
-document.getElementById("last").addEventListener("input", () => validateInput("last"));
-document.getElementById("email").addEventListener("input", validateEmail);
-document.getElementById("message").addEventListener("input", validateMessage);
+document.addEventListener("DOMContentLoaded", () => {
+    const first = document.getElementById("first");
+    if (first) first.addEventListener("input", () => validateInput("first"));
+
+    const last = document.getElementById("last");
+    if (last) last.addEventListener("input", () => validateInput("last"));
+
+    const email = document.getElementById("email");
+    if (email) email.addEventListener("input", validateEmail);
+
+    const message = document.getElementById("message");
+    if (message) message.addEventListener("input", validateMessage);
+});
 
 // Récupération et vérifier les champs à valider
 // Vérification Prénom et nom

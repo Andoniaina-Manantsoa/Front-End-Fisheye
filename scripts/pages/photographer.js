@@ -45,7 +45,7 @@ function updateLikeCard() {
     }
 }
 
-// Affichage photogrape + médias
+// Affichage photographe + médias
 let mediasData = [];
 
 async function displayPhotographerInfo() {
@@ -116,7 +116,7 @@ function openLightbox(index) {
     titleEl.textContent = media.title;
 
     lightbox.classList.add("active");
-    lightbox.removeAttribute("aria-hidden"); // ⚠️ ne pas cacher la lightbox
+    lightbox.removeAttribute("aria-hidden"); // ne pas cacher la lightbox
     mainWrapper.setAttribute("aria-hidden", "true");
 
     currentIndex = index;
