@@ -19,7 +19,7 @@ function displayModal() {
 // Fermer la modale
 function closeModal() {
     const modal = document.getElementById("contact_modal");
-    if (!modal) return;
+    if (!modal) return;//inutile de vérifier si la modale existe car elle est dans le html
 
     // Réinitialiser le formulaire
     const form = modal.querySelector('form');
@@ -42,7 +42,7 @@ if (closeBtn) {
 }
 
 const sendBtn = document.querySelector('.send_contact');
-if (sendBtn) {
+if (sendBtn) {//inutile de vérifier si le bouton existe car il est dans le formulaire dans le html
     sendBtn.addEventListener('click', function () {
         // Valider tous les champs avant envoi
         const isFirstValid = validateInput("first");
@@ -52,6 +52,7 @@ if (sendBtn) {
 
         if (isFirstValid && isLastValid && isEmailValid && isMessageValid) {
             closeModal();
+            //la partie suivante ne s'affiche pas car la modale est fermée
             const modal = document.getElementById("contact_modal");
             const confirmation = document.createElement("p");
             confirmation.textContent = "Message envoyé !";
@@ -65,7 +66,7 @@ if (sendBtn) {
 }
 
 // Ajout des écouteurs une seule fois
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {//inutile d'attendre le chargement de la page pour ajouter les écouteurs car les éléments sont déjà dans le html
     const first = document.getElementById("first");
     if (first) first.addEventListener("input", () => validateInput("first"));
 
