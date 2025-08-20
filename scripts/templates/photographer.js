@@ -36,6 +36,7 @@ function photographerTemplate(photographer) {
         const link = document.createElement('a');
         link.setAttribute('href', `photographer.html?id=${photographer.id}`);
         link.setAttribute('aria-label', `Voir la page de ${name}`);
+        link.classList.add('photographer-link');
         link.appendChild(article);
 
         return link;

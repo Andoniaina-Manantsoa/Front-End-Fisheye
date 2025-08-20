@@ -321,3 +321,16 @@ form textarea {
     font-size: 18px;
     color: #901C1C;
 }
+
+.media-card img:focus-visible,
+.media-card video:focus-visible,
+.contact_button:focus-visible,
+.icon:focus-visible,
+.like-button:focus-visible {
+    outline: 3px dashed #eb3d4c;
+    /* Couleur de la bordure au focus */
+    outline-offset: 4px;
+    /* Décale la bordure pour plus de lisibilité */
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(255, 71, 87, 0.6);
+}
