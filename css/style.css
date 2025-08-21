@@ -22,6 +22,15 @@ main-nav:root {
     padding: 0;
 }
 
+*:focus-visible {
+    outline: 3px dashed #eb3d4c;
+    /* Couleur de la bordure au focus */
+    outline-offset: 4px;
+    /* Décale la bordure pour plus de lisibilité */
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(255, 71, 87, 0.6);
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -96,11 +105,11 @@ h1 {
     color: black;
 }
 
+/* le focus on doit le mettre sur tous les elements, pas seulement sur le lien 
 .photographer-link:focus-visible {
     outline: 3px dashed #eb3d4c;
-    /* Couleur de la bordure au focus */
     outline-offset: 4px;
-    /* Décale la bordure pour plus de lisibilité */
     border-radius: 6px;
     box-shadow: 0 0 8px rgba(255, 71, 87, 0.6);
 }
+    */
