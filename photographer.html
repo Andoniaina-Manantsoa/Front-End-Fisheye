@@ -13,7 +13,9 @@
 
 <body id="body">
   <header>
-    <img src="assets/images/logo.png" class="logo" alt="logo">
+    <a href="index.html">
+      <img src="assets/images/logo.png" class="logo" alt="Accueil Fisheye">
+    </a>
   </header>
 
   <main id="main-wrapper" aria-hidden="false">
@@ -25,7 +27,7 @@
     <section class="filtres">
       <h3>Trier par</h3>
       <button class="icon" id="menu-button" aria-haspopup="true" aria-expanded="false">
-        <i class="fa-solid fa-bars"></i>
+        <span class="fa-solid fa-bars" aria-hidden="true"></span>
       </button>
 
       <div class="trie-button" role="menu">
@@ -42,20 +44,21 @@
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <button class="lightbox-close" aria-label="Fermer">
-      <i class="fa fa-times"></i>
+      <span class="fa fa-times" aria-hidden="true"></span>
     </button>
 
     <button class="lightbox-prev" aria-label="Précédent">
-      <i class="fa fa-chevron-left"></i>
+      <span class="fa fa-chevron-left" aria-hidden="true"></span>
     </button>
 
     <div class="lightbox-content">
-      <img src="" alt="" id="lightbox-image">
+      <img src="" alt="lightbox" id="lightbox-image">
       <video id="lightbox-video" controls style="display:none;"></video>
       <p id="lightbox-title"></p>
     </div>
+
     <button class="lightbox-next" aria-label="Suivant">
-      <i class="fa fa-chevron-right"></i>
+      <span class="fa fa-chevron-right" aria-hidden="true"></span>
     </button>
   </div>
 
@@ -63,8 +66,10 @@
   <div id="contact_modal" aria-hidden="true">
     <div class="modal" role="dialog" aria-describedby="modalTitle">
       <header>
-        <h2 class="modal-title">Contactez-moi</h2>
-        <img src="assets/icons/close.svg" id="close_contact" alt="contactez-moi">
+        <h2 class="modal-title">Contactez-moi <span id="photographer-name"></span></h2>
+        <button id="close_contact" aria-label="Fermer la fenêtre de contact">
+          <img src="assets/icons/close.svg" alt="">
+        </button>
       </header>
 
       <form class="contact">

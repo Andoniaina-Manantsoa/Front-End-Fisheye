@@ -87,6 +87,59 @@ async function displayPhotographerInfo() {
 
 displayPhotographerInfo();
 
+// ======= Trier les médias======
+//Afficher les tries lors du clique sur l'icon fa-bars
+const menuButton = document.getElementById("menu-button");
+const trieButton = document.querySelector(".trie-button");
+const boutons = document.querySelectorAll(".btn-trier");
+
+// Afficher/masquer le menu
+menuButton.addEventListener("click", (e) => {
+    e.stopPropagation(); // Empêche la propagation vers le document
+    trieButton.classList.toggle("active");
+    menuButton.classList.toggle("hidden"); // Cache ou montre l'icône
+});
+
+// Clic sur un bouton de tri => ferme le menu et réaffiche l'icône
+boutons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        trieButton.classList.remove("active");
+        menuButton.classList.remove("hidden");
+    });
+});
+
+// Clic en dehors => ferme le menu et réaffiche l'icône
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".filtres")) {
+        trieButton.classList.remove("active");
+        menuButton.classList.remove("hidden"); // Attention à bien utiliser "hidden"
+    }
+});
+
+// Trier les media
+const trieButtons = document.querySelectorAll(".btn-trier");
+const mediaContainer = document.getElementById("medias-container");
+
+trieButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const criter = button.textContent.toLowerCase(); // "popularité", "date", "titre"
+        const articles = Array.from(mediaContainer.children);
+
+        articles.sort((a, b) => {
+            if (criter === "popularité") {
+                return b.dataset.likes - a.dataset.likes; // du plus grand au plus petit
+            } else if (criter === "date") {
+                return new Date(b.dataset.date) - new Date(a.dataset.date); // du plus récent au plus ancien
+            } else if (criter === "titre") {
+                return a.dataset.title.localeCompare(b.dataset.title); // ordre alphabétique
+            }
+        });
+
+        // Réorganise les éléments dans le DOM
+        articles.forEach(article => mediaContainer.appendChild(article));
+    });
+});
+
 // ======== Lightbox =========
 let currentIndex = 0;
 
