@@ -26,15 +26,15 @@
     <!-- Menu de trie -->
     <section class="filtres">
       <h3>Trier par</h3>
-      <button class="icon" id="menu-button" aria-haspopup="true" aria-expanded="false">
+      <button class="icon" id="menu-button" aria-label="Menu">
         <span class="fa-solid fa-bars" aria-hidden="true"></span>
       </button>
 
-      <div class="trie-button" role="menu">
+      <ul class="trie-button">
         <button class="btn-trier">Popularité</button>
         <button class="btn-trier">Date</button>
         <button class="btn-trier">Titre</button>
-      </div>
+      </ul>
     </section>
 
     <!-- Conteneur pour les médias du photographe -->
@@ -66,7 +66,7 @@
   <div id="contact_modal" aria-hidden="true">
     <div class="modal" role="dialog" aria-describedby="modalTitle">
       <header>
-        <h2 class="modal-title">Contactez-moi <span id="photographer-name"></span></h2>
+        <h2 class="modal-title" id="modalTitle">Contactez-moi <span id="photographer-name"></span></h2>
         <button id="close_contact" aria-label="Fermer la fenêtre de contact">
           <img src="assets/icons/close.svg" alt="">
         </button>
