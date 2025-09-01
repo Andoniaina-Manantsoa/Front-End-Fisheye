@@ -1,6 +1,12 @@
 // Afficher la modale
-function displayModal() {
+function displayModal(photographerName) {
     const modal = document.getElementById("contact_modal");
+
+    // Mettre à jour le nom du photographe
+    const nameSpan = modal.querySelector("#photographer-name");
+    if (nameSpan) {
+        nameSpan.textContent = photographerName;
+    }
 
     modal.style.display = "block";
     modal.setAttribute("aria-hidden", "false");
@@ -50,11 +56,11 @@ if (sendBtn) {//inutile de vérifier si le bouton existe car il est dans le form
         const isMessageValid = validateMessage();
 
         if (isFirstValid && isLastValid && isEmailValid && isMessageValid) {
-            console.log("")
-            alert("Message reçus avec succés!");
+            console.log("Message reçus avec succés!")
+
             closeModal();
         } else {
-            alert("Veuillez corriger les champs en rouge avant d'envoyer.");
+            console.log("Veuillez corriger les champs en rouge avant d'envoyer.");
         }
     });
 }

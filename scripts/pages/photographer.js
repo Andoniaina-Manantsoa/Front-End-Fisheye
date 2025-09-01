@@ -47,6 +47,7 @@ function updateLikeCard() {
 
 // Affichage photographe + médias
 let mediasData = [];
+let sortedMedias = [];
 
 async function displayPhotographerInfo() {
     const data = await getData();
@@ -65,17 +66,17 @@ async function displayPhotographerInfo() {
 
     // récupérer les médias depuis data
     const photographerMedias = data.media.filter(m => m.photographerId === photographerId);
-    mediasData = [];
 
     mediasData = photographerMedias.slice();
+
+    // Initialise sortedMedias à l’ordre original
+    sortedMedias = [...mediasData];
 
     // Affichage des médias
     const mediasContainer = document.getElementById("medias-container");
     mediasContainer.innerHTML = "";
 
-    //parcourir les médias
-    photographerMedias.forEach((media, index) => {
-        // on passe index + callback d’ouverture à la factory
+    sortedMedias.forEach((media, index) => {
         mediasContainer.appendChild(
             mediaFactory(media, { index, onOpen: openLightbox }).getMediaCardDOM()
         );
@@ -137,6 +138,12 @@ trieButtons.forEach(button => {
 
         // Réorganise les éléments dans le DOM
         articles.forEach(article => mediaContainer.appendChild(article));
+
+        // 🔥 Met à jour sortedMedias selon le nouvel ordre
+        sortedMedias = articles.map(article => {
+            const id = article.dataset.id;
+            return mediasData.find(m => m.id == id);
+        });
     });
 });
 
@@ -150,7 +157,7 @@ function openLightbox(index) {
     const videoEl = document.getElementById("lightbox-video");
     const titleEl = document.getElementById("lightbox-title");
 
-    const media = mediasData[index];
+    const media = sortedMedias[index];
     const file = media.image
         ? `assets/photographers/media/${media.photographerId}/${media.image}`
         : `assets/photographers/media/${media.photographerId}/${media.video}`;
@@ -187,12 +194,12 @@ function closeLightbox() {
 }
 
 function showNext() {
-    currentIndex = (currentIndex + 1) % mediasData.length;
+    currentIndex = (currentIndex + 1) % sortedMedias.length;
     openLightbox(currentIndex);
 }
 
 function showPrev() {
-    currentIndex = (currentIndex - 1 + mediasData.length) % mediasData.length;
+    currentIndex = (currentIndex - 1 + sortedMedias.length) % sortedMedias.length;
     openLightbox(currentIndex);
 }
 
@@ -210,5 +217,5 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-export { updateLikeCard };
+export { updateLikeCard, sortedMedias };
 

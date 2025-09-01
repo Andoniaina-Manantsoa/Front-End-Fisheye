@@ -64,7 +64,7 @@ h1 {
     text-decoration: none;
     margin: 40px;
     margin-top: 80px;
-    padding: 0 20px;
+    /*padding: 0 20px;*/
 }
 
 .photographer_section a {
@@ -83,6 +83,7 @@ h1 {
     color: #D3573C;
     font-size: 36px;
     margin-bottom: 0;
+    margin-top: 20px;
     cursor: pointer;
 }
 
@@ -94,21 +95,21 @@ h1 {
 }
 
 .photographer-location {
-    color: #D3573C;
+    color: #901C1C;
     margin: 0;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .photographer-price {
     margin: 5px;
-    font-size: 9px;
+    font-size: 12px;
     color: black;
 }
 
 .photographer-tagline {
     margin: 5px;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 13px;
     color: black;
 }
 

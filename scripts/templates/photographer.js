@@ -70,7 +70,14 @@ function photographerTemplate(photographer) {
         const contactButton = document.createElement('button');
         contactButton.textContent = "Contactez-moi";
         contactButton.classList.add('contact_button');
-        contactButton.addEventListener('click', displayModal);
+
+        // stocker le nom du photographe dans un data-attribute
+        contactButton.setAttribute('data-name', name);
+
+        // passer le nom quand on clique
+        contactButton.addEventListener('click', () => {
+            displayModal(name);
+        });
 
         // Div pour l'image
         const imageContainer = document.createElement('div');

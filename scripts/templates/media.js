@@ -1,4 +1,4 @@
-import { updateLikeCard } from '../pages/photographer.js';
+import { updateLikeCard, sortedMedias } from '../pages/photographer.js';
 
 function mediaFactory(media, { index, onOpen } = {}) {
     const { title, image, video, likes, photographerId } = media;
@@ -11,6 +11,7 @@ function mediaFactory(media, { index, onOpen } = {}) {
         article.classList.add("media-card");
 
         // Ajouter les data-attributes pour le tri
+        article.dataset.id = media.id;
         article.dataset.likes = media.likes;
         article.dataset.title = media.title;
         article.dataset.date = media.date;
@@ -34,7 +35,11 @@ function mediaFactory(media, { index, onOpen } = {}) {
 
         // Fonction d'ouverture de la lightbox
         const open = () => {
-            if (typeof onOpen === "function") onOpen(index);
+            if (typeof onOpen === "function") {
+                // trouve l'index dynamique dans sortedMedias
+                const indexInSorted = sortedMedias.findIndex(m => m.id == media.id);
+                onOpen(indexInSorted);
+            }
         };
 
         // Clic souris → ouvre lightbox
