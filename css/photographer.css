@@ -9,9 +9,11 @@
 
 .photograph-header {
     background-color: #FAFAFA;
-    width: 1240px;
+    width: 1200px;
     height: 300px;
+    justify-content: center;
     margin-bottom: 50px;
+    margin-left: 120px;
 }
 
 .photographer-img img {
@@ -73,8 +75,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 50px;
+    width: 100%;
+    max-width: 1200px;
     margin-top: 50px;
     margin-bottom: 50px;
+    margin-left: 120px;
 }
 
 .photographer-media-section img,
@@ -92,7 +97,7 @@ video {
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    margin-right: 40px;
+    margin-right: 85px;
 }
 
 .media-likes {
@@ -210,6 +215,7 @@ form textarea {
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-left: 120px;
     position: relative;
 }
 

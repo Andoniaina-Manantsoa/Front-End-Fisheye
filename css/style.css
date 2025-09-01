@@ -4,7 +4,7 @@ body {
     font-family: "DM Sans", sans-serif;
     display: flex;
     flex-direction: column;
-    max-width: 1240px;
+    max-width: 1400px;
     min-width: 375px;
     height: 100%;
     margin: 0 auto;
@@ -33,31 +33,38 @@ main-nav:root {
 
 header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    gap: 590px;
+    width: 100%;
+    max-width: 1200px;
     height: 90px;
-    margin-top: 30px;
+    margin: auto;
+    margin-top: 40px;
+    padding: 0 20px;
     /*margin-bottom: 50px;*/
 }
 
 h1 {
     color: #901C1C;
+    width: 300px;
 }
 
 .logo {
+    width: 200px;
     height: 50px;
 }
 
 .photographer_section {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 80px;
     width: 100%;
+    max-width: 1200px;
     height: 100%;
     text-decoration: none;
-    margin-left: -70px;
-    margin-top: 70px;
+    margin: 40px;
+    margin-top: 80px;
+    padding: 0 20px;
 }
 
 .photographer_section a {

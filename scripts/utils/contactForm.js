@@ -11,7 +11,7 @@ function displayModal() {
     // Retirer la classe input-error de tous les champs
     modal.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
 
-    // Donner le focus au premier champ de la modale
+    // Donner le focus au premier champ du modal
     const firstInput = modal.querySelector("input, textarea");
     if (firstInput) firstInput.focus();
 }
