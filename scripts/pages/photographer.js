@@ -15,6 +15,31 @@ function getPhotographerIdFromUrl() {
     return parseInt(params.get("id"));
 }
 
+//Fonction affichage erreur 
+function displayError(message) {
+    const main = document.getElementById("main-wrapper") || document.body;
+    main.innerHTML = ""; // vide le contenu existant
+
+    const container = document.createElement("div");
+    container.classList.add("error-message");
+
+    const title = document.createElement("h2");
+    title.textContent = "Erreur";
+
+    const p = document.createElement("p");
+    p.textContent = message;
+
+    const link = document.createElement("a");
+    link.href = "index.html";
+    link.textContent = "← Retour à l’accueil";
+
+    container.appendChild(title);
+    container.appendChild(p);
+    container.appendChild(link);
+
+    main.appendChild(container);
+}
+
 let dailyRate = 0;
 
 //Afficher le prix journalier des photographers + likes
@@ -51,10 +76,21 @@ let sortedMedias = [];
 
 async function displayPhotographerInfo() {
     const data = await getData();
-
     const photographerId = getPhotographerIdFromUrl();
 
+    // Vérifie si l’ID est valide (nombre et existant)
+    if (!photographerId || isNaN(photographerId)) {
+        displayError("L'identifiant du photographe est invalide.");
+        return;
+    }
+
     const photographer = data.photographers.find(p => p.id === photographerId);
+
+    if (!photographer) {
+        displayError("Aucun photographe trouvé avec cet identifiant.");
+        return;
+    }
+
     // Récupérer le tarif journalier
     dailyRate = photographer.price;
 
