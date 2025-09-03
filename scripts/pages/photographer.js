@@ -126,62 +126,132 @@ displayPhotographerInfo();
 
 // ======= Trier les médias======
 //Afficher les tries lors du clique sur l'icon fa-bars
-const menuButton = document.getElementById("menu-button");
-const trieButton = document.querySelector(".trie-button");
-const boutons = document.querySelectorAll(".btn-trier");
+const sortButton = document.getElementById("sort-button");
+const sortList = document.querySelector(".trie-button");
+const currentSort = document.getElementById("current-sort");
+const options = sortList.querySelectorAll("li");
+const arrow = sortButton.querySelector(".arrow");
+const mediaContainer = document.getElementById("medias-container");
 
-// Afficher/masquer le menu
-menuButton.addEventListener("click", (e) => {
-    e.stopPropagation(); // Empêche la propagation vers le document
-    trieButton.classList.toggle("active");
-    menuButton.classList.toggle("hidden"); // Cache ou montre l'icône
-});
+// ==== Ouvrir / fermer le menu avec clic ====
+sortButton.addEventListener("click", () => {
+    const expanded = sortButton.getAttribute("aria-expanded") === "true";
+    sortButton.setAttribute("aria-expanded", !expanded);
+    sortList.classList.toggle("hidden");
+    arrow.classList.toggle("rotate");
 
-// Clic sur un bouton de tri => ferme le menu et réaffiche l'icône
-boutons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        trieButton.classList.remove("active");
-        menuButton.classList.remove("hidden");
+    // cacher l'option actuellement sélectionnée
+    options.forEach(option => {
+        if (option.textContent === currentSort.textContent) {
+            option.style.display = expanded ? "block" : "none"; // si on ouvre => cacher
+        } else {
+            option.style.display = "block";
+        }
     });
 });
 
-// Clic en dehors => ferme le menu et réaffiche l'icône
-document.addEventListener("click", (e) => {
-    if (!e.target.closest(".filtres")) {
-        trieButton.classList.remove("active");
-        menuButton.classList.remove("hidden"); // Attention à bien utiliser "hidden"
+// Ouvrir/fermer menu au clavier
+sortButton.addEventListener("keydown", (e) => {
+    const expanded = sortButton.getAttribute("aria-expanded") === "true";
+
+    if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        sortButton.click(); // déclenche le toggle du menu
+    }
+
+    if (e.key === "ArrowDown" && !expanded) {
+        e.preventDefault();
+        sortButton.click(); // ouvre le menu
+        options[0].focus(); // focus sur la première option
     }
 });
 
-// Trier les media
-const trieButtons = document.querySelectorAll(".btn-trier");
-const mediaContainer = document.getElementById("medias-container");
+// ==== Sélectionner une option (clic + clavier) ====
+options.forEach((option, index) => {
+    // clic souris
+    option.addEventListener("click", () => {
+        currentSort.textContent = option.textContent;
 
-trieButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const criter = button.textContent.toLowerCase(); // "popularité", "date", "titre"
-        const articles = Array.from(mediaContainer.children);
+        // mettre à jour aria-selected
+        options.forEach(opt => opt.setAttribute("aria-selected", "false"));
+        option.setAttribute("aria-selected", "true");
 
-        articles.sort((a, b) => {
-            if (criter === "popularité") {
-                return b.dataset.likes - a.dataset.likes; // du plus grand au plus petit
-            } else if (criter === "date") {
-                return new Date(b.dataset.date) - new Date(a.dataset.date); // du plus récent au plus ancien
-            } else if (criter === "titre") {
-                return a.dataset.title.localeCompare(b.dataset.title); // ordre alphabétique
+        // lancer le tri
+        applySort(option.dataset.value);
+
+        // fermer menu
+        sortButton.setAttribute("aria-expanded", "false");
+        sortList.classList.add("hidden");
+        arrow.classList.remove("rotate");
+
+        // Cacher l'option actuellement sélectionnée
+        options.forEach(opt => {
+            if (opt.textContent === currentSort.textContent) {
+                opt.style.display = "none";
+            } else {
+                opt.style.display = "block";
             }
         });
+    });
 
-        // Réorganise les éléments dans le DOM
-        articles.forEach(article => mediaContainer.appendChild(article));
-
-        // 🔥 Met à jour sortedMedias selon le nouvel ordre
-        sortedMedias = articles.map(article => {
-            const id = article.dataset.id;
-            return mediasData.find(m => m.id == id);
-        });
+    // navigation clavier
+    option.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            const nextIndex = (index + 1) % options.length;
+            options[nextIndex].focus();
+        }
+        if (e.key === "ArrowUp") {
+            e.preventDefault();
+            const prevIndex = (index - 1 + options.length) % options.length;
+            options[prevIndex].focus();
+        }
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            option.click();
+            sortButton.focus();
+        }
+        if (e.key === "Escape") {
+            e.preventDefault();
+            sortList.classList.add("hidden");
+            sortButton.setAttribute("aria-expanded", "false");
+            arrow.classList.remove("rotate");
+            sortButton.focus();
+        }
     });
 });
+
+//Fermer si on clique dehors
+document.addEventListener("click", (e) => {
+    if (!sortButton.contains(e.target) && !sortList.contains(e.target)) {
+        sortList.classList.add("hidden");
+        sortButton.setAttribute("aria-expanded", "false");
+        arrow.classList.remove("rotate");
+    }
+})
+// Fonction de tri
+function applySort(criter) {
+    const articles = Array.from(mediaContainer.children);
+
+    articles.sort((a, b) => {
+        if (criter === "popularité") {
+            return b.dataset.likes - a.dataset.likes;
+        } else if (criter === "date") {
+            return new Date(b.dataset.date) - new Date(a.dataset.date);
+        } else if (criter === "titre") {
+            return a.dataset.title.localeCompare(b.dataset.title);
+        }
+    });
+
+    // Réorganiser les éléments dans le DOM
+    articles.forEach(article => mediaContainer.appendChild(article));
+
+    // mettre à jour sortedMedias si nécessaire
+    sortedMedias = articles.map(article => {
+        const id = article.dataset.id;
+        return mediasData.find(m => m.id == id);
+    });
+}
 
 // ======== Lightbox =========
 let currentIndex = 0;

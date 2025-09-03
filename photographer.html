@@ -24,18 +24,20 @@
     </div>
 
     <!-- Menu de trie -->
-    <section class="filtres">
-      <h3>Trier par</h3>
-      <button class="icon" id="menu-button" aria-label="Menu">
-        <span class="fa-solid fa-bars" aria-hidden="true"></span>
+    <div class="custom-select">
+      <h3 class="section_filter">Trier par</h3>
+
+      <button id="sort-button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="sort-label">
+        <span id="current-sort">Popularité</span>
+        <span><i class="fa-solid fa-chevron-down arrow" aria-hidden="true"></i></span>
       </button>
 
-      <ul class="trie-button">
-        <button class="btn-trier">Popularité</button>
-        <button class="btn-trier">Date</button>
-        <button class="btn-trier">Titre</button>
+      <ul class="trie-button hidden" role="listbox" aria-labelledby="sort-label">
+        <li role="option" tabindex="0" data-value="popularité" aria-selected="true">Popularité</li>
+        <li role="option" tabindex="0" data-value="date">Date</li>
+        <li role="option" tabindex="0" data-value="titre">Titre</li>
       </ul>
-    </section>
+    </div>
 
     <!-- Conteneur pour les médias du photographe -->
     <section id="medias-container" class="photographer-media-section"></section>
