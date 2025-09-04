@@ -139,15 +139,6 @@ sortButton.addEventListener("click", () => {
     sortButton.setAttribute("aria-expanded", !expanded);
     sortList.classList.toggle("hidden");
     arrow.classList.toggle("rotate");
-
-    // cacher l'option actuellement sélectionnée
-    /*options.forEach(option => {
-        if (option.textContent === currentSort.textContent) {
-            option.style.display = expanded ? "block" : "none"; // si on ouvre => cacher
-        } else {
-            option.style.display = "block";
-        }
-    });*/
 });
 
 // Ouvrir/fermer menu au clavier
@@ -183,15 +174,6 @@ options.forEach((option, index) => {
         sortButton.setAttribute("aria-expanded", "false");
         sortList.classList.add("hidden");
         arrow.classList.remove("rotate");
-
-        // Cacher l'option actuellement sélectionnée
-        /*options.forEach(opt => {
-            if (opt.textContent === currentSort.textContent) {
-                opt.style.display = "none";
-            } else {
-                opt.style.display = "block";
-            }
-        });*/
     });
 
     // navigation clavier

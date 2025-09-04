@@ -233,8 +233,8 @@ form textarea {
 
 /* Label / titre */
 .custom-select .section_filter {
-    margin: 0 0 5px 0;
-    font-size: 16px;
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 .trie-button {
