@@ -241,12 +241,12 @@ form textarea {
     background-color: #901C1C;
     color: #FAFAFA;
     min-width: 166px;
-    height: 100px;
     left: 200px;
     top: 100%;
     border-radius: 5px;
     position: absolute;
     z-index: 10;
+    overflow: hidden;
 }
 
 .trie-button.hidden {
@@ -257,13 +257,23 @@ form textarea {
     padding: 12px;
     cursor: pointer;
     font-size: 18px;
-    border-bottom: 1px solid #FAFAFA;
+    position: relative;
 }
 
 .trie-button li:hover,
 .trie-button li:focus {
     background: #D3573C;
     outline-offset: -2px;
+}
+
+.trie-button li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    right: 8px;
+    height: 1px;
+    background-color: white;
 }
 
 .arrow.rotate {
