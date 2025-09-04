@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
-import { photographerTemplate } from '../templates/photographer.js';
 import { mediaFactory } from '../templates/media.js';
+import { photographerTemplate } from '../templates/photographer.js';
 
 //Récuperer les donner avec fetch
 async function getData() {
@@ -141,13 +141,13 @@ sortButton.addEventListener("click", () => {
     arrow.classList.toggle("rotate");
 
     // cacher l'option actuellement sélectionnée
-    options.forEach(option => {
+    /*options.forEach(option => {
         if (option.textContent === currentSort.textContent) {
             option.style.display = expanded ? "block" : "none"; // si on ouvre => cacher
         } else {
             option.style.display = "block";
         }
-    });
+    });*/
 });
 
 // Ouvrir/fermer menu au clavier
@@ -185,13 +185,13 @@ options.forEach((option, index) => {
         arrow.classList.remove("rotate");
 
         // Cacher l'option actuellement sélectionnée
-        options.forEach(opt => {
+        /*options.forEach(opt => {
             if (opt.textContent === currentSort.textContent) {
                 opt.style.display = "none";
             } else {
                 opt.style.display = "block";
             }
-        });
+        });*/
     });
 
     // navigation clavier
@@ -323,5 +323,5 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-export { updateLikeCard, sortedMedias };
+export { sortedMedias, updateLikeCard };
 
