@@ -1,6 +1,6 @@
 import { updateLikeCard, sortedMedias } from '../pages/photographer.js';
 
-function mediaFactory(media, { index, onOpen } = {}) {
+function mediaFactory(media, { onOpen } = {}) {
     const { title, image, video, likes, photographerId } = media;
     const file = image ? `assets/photographers/media/${photographerId}/${image}` : `assets/photographers/media/${photographerId}/${video}`;
 
