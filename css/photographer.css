@@ -5,7 +5,7 @@
     right: 0;
     justify-content: center;
     align-items: center;
-    padding: 10px
+    padding: 10px;
 }
 
 .photograph-header {
@@ -55,12 +55,12 @@
 
 .contact_button,
 .send_contact {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
-    padding: 11px;
+    padding: 10px;
     width: 170px;
-    height: 70px;
+    height: 50px;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
@@ -70,6 +70,11 @@
 #close_contact {
     background: none;
     border: none;
+}
+
+.close-modal {
+    width: 30px;
+    height: 30px;
 }
 
 .photographer-media-section {
@@ -117,13 +122,12 @@ video {
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 90%;
-    max-width: 669px;
-    height: auto;
+    width: 100%;
+    max-width: 600px;
+    height: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px;
     margin: auto;
 }
 
@@ -131,7 +135,7 @@ video {
     margin-bottom: 50px;
     gap: 200px;
     width: 100%;
-    max-width: 669px;
+    max-width: 550px;
     padding-left: 0;
 
 }
@@ -141,22 +145,22 @@ video {
 }
 
 .modal header h2 {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: normal;
 }
 
 form {
     display: flex;
     width: 100%;
-    max-width: 669px;
+    max-width: 550px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 15px;
 }
 
 form label {
     color: #312E2E;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 form div {
@@ -164,12 +168,11 @@ form div {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
 }
 
 form input {
     width: 100%;
-    height: 60px;
+    height: 100%;
     border-radius: 5px;
     font-size: 15px;
     padding: 15px;
