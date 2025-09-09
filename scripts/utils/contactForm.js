@@ -48,7 +48,8 @@ if (closeBtn) {
 
 const sendBtn = document.querySelector('.send_contact');
 if (sendBtn) {//inutile de vérifier si le bouton existe car il est dans le formulaire dans le html
-    sendBtn.addEventListener('click', function () {
+    sendBtn.addEventListener('click', function (e) {
+        e.preventDefault();
         // Valider tous les champs avant envoi
         const isFirstValid = validateInput("first");
         const isLastValid = validateInput("last");
@@ -56,7 +57,15 @@ if (sendBtn) {//inutile de vérifier si le bouton existe car il est dans le form
         const isMessageValid = validateMessage();
 
         if (isFirstValid && isLastValid && isEmailValid && isMessageValid) {
-            console.log("Message reçus avec succés!")
+            // Récupérer les valeurs des champs
+            const modal = document.getElementById("contact_modal");
+            const firstName = modal.querySelector('input[name="first"]').value;
+            const lastName = modal.querySelector('input[name="last"]').value;
+            const message = modal.querySelector('textarea[name="message"]').value;
+            console.log("Message reçus avec succés!");
+            console.log(firstName);
+            console.log(lastName);
+            console.log(message);
 
             closeModal();
         } else {
